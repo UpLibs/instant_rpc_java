@@ -122,7 +122,9 @@ public class IRPCResponse {
 	public String buildIRPCResponse() {
 		StringBuilder str = new StringBuilder() ;
 	
-		str.append("0\n\n") ;
+		String fakeEventTable = "0;0;0\n!_EVT_!" ;
+		
+		str.append( fakeEventTable.length() +"\n"+fakeEventTable+"\n") ;
 		
 		if (invokeReturn != null) {
 			str.append(invokeReturn) ;
