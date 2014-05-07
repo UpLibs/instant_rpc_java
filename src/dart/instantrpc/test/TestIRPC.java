@@ -45,7 +45,7 @@ public class TestIRPC {
 		
 		irpcProcessor.registerDataProvider("/foo", foo);
 		
-		IRPCResponse response = irpcProcessor.processRequest("/foo/test1?0=123&1=abcdefg&2=[1,2,'aa bb']&3={'a':1 , 'b':2}", null, null);
+		IRPCResponse response = irpcProcessor.processRequest("/foo/test1?0=123&1=abcdefg&2=[1,2,'aa bb']&3={'a':1 , 'b':2}", null);
 		
 		System.out.println(response);
 		System.out.println( response.getOutput() );
