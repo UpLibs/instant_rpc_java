@@ -136,7 +136,7 @@ final public class IRPCDataProviderHandler {
 		return null ;
 	}
 	
-	protected void process( IRPCRequest request , IRPCResponse response ) {
+	protected void process( IRPCRequest request , IRPCResponse response, IRPCSession session) {
 		
 		Method method = getMethod( request.methodName ) ;
 		

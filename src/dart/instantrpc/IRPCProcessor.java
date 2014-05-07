@@ -28,7 +28,7 @@ final public class IRPCProcessor {
 		}
 	}
 	
-	public IRPCResponse processRequest(String fullPath) {
+	public IRPCResponse processRequest(String fullPath, Map<String,Object> sessionMap, String sessionId) {
 		
 		String[] parts = fullPath.split("\\?",2) ;
 		
@@ -54,7 +54,7 @@ final public class IRPCProcessor {
 			}	
 		}
 		
-		return processRequest(parts[0] , queryParameters);
+		return processRequest(parts[0] , queryParameters, sessionMap, sessionId);
 		
 	}
 	
@@ -79,7 +79,7 @@ final public class IRPCProcessor {
 		
 	}
 	
-	public IRPCResponse processRequest(String path, Map<String,String> queryParameters) {
+	public IRPCResponse processRequest(String path, Map<String,String> queryParameters, Map<String,Object> sessionMap, String sessionId) {
 		
 		IRPCResponse response = new IRPCResponse() ;
 		
@@ -98,7 +98,9 @@ final public class IRPCProcessor {
 				return response ;
 			}
 			
-			dataProviderHandler.process(request , response);
+			IRPCSessionWrapper session = sessionMap != null ? new IRPCSessionWrapper(sessionId, sessionMap) : new IRPCSessionWrapper("0", new HashMap<String, Object>()) ;
+			
+			dataProviderHandler.process(request , response, session);
 			
 			return response ;
 		}

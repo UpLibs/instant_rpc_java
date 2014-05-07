@@ -6,16 +6,16 @@ import java.util.Set;
 
 public class IRPCSessionWrapper extends IRPCSession {
 
-	final private int id ;
+	final private String id ;
 	final private Map<String,Object> map ;
 	
-	public IRPCSessionWrapper(int id, Map<String,Object> map) {
+	public IRPCSessionWrapper(String id, Map<String,Object> map) {
 		this.id = id ;
 		this.map = map ;
 	}
 	
 	@Override
-	public int getID() {
+	public String getID() {
 		return id ;
 	}
 
