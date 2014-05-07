@@ -28,7 +28,7 @@ final public class IRPCProcessor {
 		}
 	}
 	
-	public IRPCResponse processRequest(String fullPath, IRPCSessionWrapper session) {
+	public IRPCResponse processRequest(String fullPath, IRPCSession session) {
 		
 		String[] parts = fullPath.split("\\?",2) ;
 		
@@ -79,7 +79,7 @@ final public class IRPCProcessor {
 		
 	}
 	
-	public IRPCResponse processRequest(String path, Map<String,String> queryParameters, IRPCSessionWrapper session) {
+	public IRPCResponse processRequest(String path, Map<String,String> queryParameters, IRPCSession session) {
 		
 		IRPCResponse response = new IRPCResponse() ;
 		
