@@ -169,6 +169,7 @@ final public class IRPCDataProviderHandler {
 		
 		try {
 			IRPCResponse.setLocalResponse(response);
+			IRPCSession.setLocalSession(session);
 			
 			method.invoke(dataProvider, args) ;
 			response.ok = true ;
@@ -193,6 +194,7 @@ final public class IRPCDataProviderHandler {
 		}
 		finally {
 			IRPCResponse.removeLocalResponse(response);
+			IRPCSession.removeLocalSession(session);
 		}
 		
 	}
