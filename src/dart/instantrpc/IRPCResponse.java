@@ -30,7 +30,7 @@ public class IRPCResponse {
 	protected boolean pathNotFound = false ;
 	protected Exception error ;
 	
-	
+	protected Object invokeReturn ;
 	
 	public boolean isOk() {
 		return ok;
@@ -119,6 +119,18 @@ public class IRPCResponse {
 	
 	////////////////////////////////////////////////////////////////////////
 
+	public String buildIRPCResponse() {
+		StringBuilder str = new StringBuilder() ;
+	
+		str.append("0\n\n") ;
+		
+		if (invokeReturn != null) {
+			str.append(invokeReturn) ;
+		}
+		
+		return str.toString() ;
+	}
+	
 	@Override
 	public String toString() {
 		return this.getClass().getName()+"[ok: "+ok+" ; pathNotFound: "+ pathNotFound +" ; error: "+ error +"]";

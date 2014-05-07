@@ -171,8 +171,10 @@ final public class IRPCDataProviderHandler {
 			IRPCResponse.setLocalResponse(response);
 			IRPCSession.setLocalSession(session);
 			
-			method.invoke(dataProvider, args) ;
+			Object ret = method.invoke(dataProvider, args) ;
+			
 			response.ok = true ;
+			response.invokeReturn = ret ;
 		}
 		catch (InvocationTargetException e) {
 			response.ok = false ;

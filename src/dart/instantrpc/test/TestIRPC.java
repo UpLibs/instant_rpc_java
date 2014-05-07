@@ -12,7 +12,7 @@ public class TestIRPC {
 	
 	static class Foo {
 		
-		public void test1(int a, String b, List<String> l, Map<String,Object> m) {
+		public String test1(int a, String b, List<String> l, Map<String,Object> m) {
 			IRPCResponse response = IRPCResponse.get() ;
 			
 			System.out.println("test>>> "+ a +" > "+ b +" > "+ l +" > "+ m +" >>> "+ response);
@@ -33,6 +33,7 @@ public class TestIRPC {
 				}
 			}
 			
+			return "test1:ret#"+ System.currentTimeMillis() ;
 		}
 		
 	}
@@ -49,6 +50,7 @@ public class TestIRPC {
 		
 		System.out.println(response);
 		System.out.println( response.getOutput() );
+		System.out.println( response.buildIRPCResponse() );
 		
 		
 	}
