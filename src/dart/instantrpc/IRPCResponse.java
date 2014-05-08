@@ -32,6 +32,16 @@ public class IRPCResponse {
 	
 	protected Object invokeReturn ;
 	
+	private IRPCEventTable eventTable ;
+	
+	public IRPCResponse( IRPCEventTable eventTable ) {
+		this.eventTable = eventTable ;
+	}
+	
+	public IRPCEventTable getEventTable() {
+		return eventTable;
+	}
+
 	public boolean isOk() {
 		return ok;
 	}
@@ -119,12 +129,18 @@ public class IRPCResponse {
 	
 	////////////////////////////////////////////////////////////////////////
 
+	protected String fullIRPCResponse ;
+	
+	static private String DUMMY_IRPCEventTable_toString = new IRPCEventTable().toString() ;
+	
 	public String buildIRPCResponse() {
+		if (fullIRPCResponse != null) return fullIRPCResponse ;
+		
 		StringBuilder str = new StringBuilder() ;
 	
-		String fakeEventTable = "0;0;0\n!_EVT_!" ;
+		String eventTableStr = eventTable == null ? DUMMY_IRPCEventTable_toString : eventTable.toString() ;
 		
-		str.append( fakeEventTable.length() +"\n"+fakeEventTable+"\n") ;
+		str.append( eventTableStr.length() +"\n"+eventTableStr+"\n") ;
 		
 		if (invokeReturn != null) {
 			str.append(invokeReturn) ;

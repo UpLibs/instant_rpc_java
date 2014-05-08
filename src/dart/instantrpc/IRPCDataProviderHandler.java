@@ -195,6 +195,8 @@ final public class IRPCDataProviderHandler {
 			e.printStackTrace();
 		}
 		finally {
+			response.getEventTable().consumeUntilEventID(request.lastEventTableId) ;
+		    
 			IRPCResponse.removeLocalResponse(response);
 			IRPCSession.removeLocalSession(session);
 		}

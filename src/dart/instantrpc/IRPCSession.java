@@ -26,6 +26,9 @@ abstract public class IRPCSession implements Map<String,Object> {
 	
 	////////////////////////////////////////////////////////////////
 
+	public IRPCSession() {
+	}
+	
 	abstract public String getID() ;
 	
 	abstract public void detroy() ;

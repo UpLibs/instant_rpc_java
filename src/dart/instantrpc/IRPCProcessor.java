@@ -80,12 +80,18 @@ final public class IRPCProcessor {
 	}
 	
 	public IRPCResponse processRequest(String path, Map<String,String> queryParameters, IRPCSession session) {
+		if (session == null) {
+			session = new IRPCSessionWrapper("0", new HashMap<String,Object>()) ;
+		}
 		
-		IRPCResponse response = new IRPCResponse() ;
+		IRPCEventTable eventTable = getEventTable(session) ;
+		
+		IRPCResponse response = new IRPCResponse(eventTable) ;
 		
 		IRPCRequest request = new IRPCRequest(path, queryParameters) ;
 		
 		if ( request.eventUpdateRequest ) {
+			processEventTableUpdate(response, session, request.eventUpdateLastID);
 			
 			return response ;
 		}
@@ -98,11 +104,34 @@ final public class IRPCProcessor {
 				return response ;
 			}
 			
-			dataProviderHandler.process(request , response, session);
+			dataProviderHandler.process(request, response, session);
 			
 			return response ;
 		}
 		
 	}
+
+	static final String SESSION_IRPC_EVENT_TABLE = "__IRPC_EVENT_TABLE__";
+	  
+	private IRPCEventTable getEventTable( IRPCSession session ) {
+	    IRPCEventTable eventTable = (IRPCEventTable) session.get(SESSION_IRPC_EVENT_TABLE) ;
+	    
+	    if (eventTable == null) {
+	      eventTable = new IRPCEventTable() ;
+	      session.put(SESSION_IRPC_EVENT_TABLE , eventTable) ;
+	    }
+	    
+	    return eventTable ;
+	  }
+	  
+	
+	private void processEventTableUpdate( IRPCResponse response , IRPCSession session , int lastEventId ) {
+	    IRPCEventTable eventTable = getEventTable(session) ;
+	    
+	    eventTable.consumeUntilEventID(lastEventId) ;
+	    
+	    response.fullIRPCResponse = eventTable.toString() ;
+	}
+
 	
 }

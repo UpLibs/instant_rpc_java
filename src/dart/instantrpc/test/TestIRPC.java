@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import dart.instantrpc.IRPCEventTable;
 import dart.instantrpc.IRPCProcessor;
 import dart.instantrpc.IRPCResponse;
 
@@ -14,6 +15,8 @@ public class TestIRPC {
 		
 		public String test1(int a, String b, List<String> l, Map<String,Object> m) {
 			IRPCResponse response = IRPCResponse.get() ;
+			
+			IRPCEventTable.get().addEvent("test", "a","1"  , "b","2");
 			
 			System.out.println("test>>> "+ a +" > "+ b +" > "+ l +" > "+ m +" >>> "+ response);
 			
@@ -48,7 +51,7 @@ public class TestIRPC {
 		
 		IRPCResponse response = irpcProcessor.processRequest("/foo/test1?0=123&1=abcdefg&2=[1,2,'aa bb']&3={'a':1 , 'b':2}", null);
 		
-		System.out.println(response);
+		System.out.println( response );
 		System.out.println( response.getOutput() );
 		System.out.println( response.buildIRPCResponse() );
 		
