@@ -54,8 +54,42 @@ final public class IRPCDataProviderHandler {
 			
 	}
 	
+	static public String toDartType(Class<?> type) {
+		if (type == null) return null ;
+		
+		if ( type == String.class ) {
+			return "String" ;
+		}
+		else if ( type == int.class || type == Integer.class ) {
+			return "int" ;
+		}
+		else if ( type == boolean.class || type == Boolean.class  ) {
+			return "bool" ;
+		}
+		else if ( type == long.class || type == Long.class  ) {
+			return "int" ;
+		}
+		else if ( type == double.class || type == Double.class  ) {
+			return "double" ;
+		}
+		else if ( type == float.class || type == Float.class  ) {
+			return "double" ;
+		}
+		else if ( type == short.class || type == Short.class  ) {
+			return "int" ;
+		}
+		else if ( List.class.isAssignableFrom(type) ) {
+			return "List" ;
+		}
+		else if ( Map.class.isAssignableFrom(type) ) {
+			return "Map" ;
+		}
+		
+		return null ;
+	}
+	
 	@SuppressWarnings("unchecked")
-	static private Object toType(String val , Class<?> type) {
+	static public Object toType(String val , Class<?> type) {
 		
 		if ( type == String.class ) {
 			return val ;
@@ -175,6 +209,7 @@ final public class IRPCDataProviderHandler {
 			
 			response.ok = true ;
 			response.invokeReturn = ret ;
+			response.invokeReturnType = method.getReturnType() ;
 		}
 		catch (InvocationTargetException e) {
 			response.ok = false ;

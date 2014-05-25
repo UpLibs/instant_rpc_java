@@ -31,6 +31,7 @@ public class IRPCResponse {
 	protected Exception error ;
 	
 	protected Object invokeReturn ;
+	protected Class<?> invokeReturnType ;
 	
 	private IRPCEventTable eventTable ;
 	
@@ -143,6 +144,9 @@ public class IRPCResponse {
 		str.append( eventTableStr.length() +"\n"+eventTableStr+"\n") ;
 		
 		if (invokeReturn != null) {
+			str.append( IRPCDataProviderHandler.toDartType(invokeReturnType) ) ;
+			str.append("\n") ;
+			
 			str.append(invokeReturn) ;
 		}
 		
