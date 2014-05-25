@@ -44,7 +44,7 @@ final public class IRPCProcessor {
 					String[] keyVal = pair.split("=",2);
 					
 					String key = URLDecoder.decode(keyVal[0], "UTF-8") ;
-					String val = URLDecoder.decode(keyVal[1], "UTF-8") ;
+					String val = keyVal.length > 1 ? URLDecoder.decode(keyVal[1], "UTF-8") : null ;
 					
 					queryParameters.put(key, val) ;
 				}
