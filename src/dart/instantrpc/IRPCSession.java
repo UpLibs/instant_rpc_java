@@ -5,7 +5,7 @@ import java.util.Map;
 
 abstract public class IRPCSession implements Map<String,Object> {
 
-	static ThreadLocal<WeakReference<IRPCSession>> localSession = new ThreadLocal<>() ;
+	static ThreadLocal<WeakReference<IRPCSession>> localSession = new ThreadLocal<WeakReference<IRPCSession>>() ;
 	
 	static protected void setLocalSession(IRPCSession session) {
 		localSession.set( new WeakReference<IRPCSession>(session) );

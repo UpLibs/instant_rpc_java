@@ -20,7 +20,7 @@ final public class IRPCEvent {
 
 		String[] lines = paramsStr.split("\n");
 
-		Map<String, String> params = new HashMap<>();
+		Map<String, String> params = new HashMap<String, String>();
 
 		for (String l : lines) {
 			int idx = l.indexOf("=");

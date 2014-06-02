@@ -16,7 +16,7 @@ public class IRPCEventTable {
 
 	static final protected String MARK_EVENT_DELIMITER = "!_EVT_!";
 
-	private List<IRPCEvent> events = new ArrayList<>();
+	private List<IRPCEvent> events = new ArrayList<IRPCEvent>();
 
 	private int lastConsumedEvent = 0;
 

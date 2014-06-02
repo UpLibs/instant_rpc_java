@@ -45,7 +45,7 @@ public class IRPCRequest {
 	        
 	        this.lastEventTableId = lastEventTableIdStr != null ? Integer.parseInt(lastEventTableIdStr) : 0 ;
 	        
-	        List<String> positionalParams = new ArrayList<>() ;
+	        List<String> positionalParams = new ArrayList<String>() ;
 	        
 	        int lastAddedIdx = -1 ;
 	        for (int i = 0 ; i <= 20 ; i++) {

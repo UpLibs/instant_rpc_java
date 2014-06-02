@@ -8,7 +8,7 @@ import java.util.WeakHashMap;
 
 final public class IRPCProcessor {
 
-	final private HashMap<String, Object> dataProviders = new HashMap<>() ;
+	final private HashMap<String, Object> dataProviders = new HashMap<String, Object>() ;
 	
 	public void clearRegisteredDataProviders() {
 		synchronized (dataProviders) {
@@ -58,7 +58,7 @@ final public class IRPCProcessor {
 		
 	}
 	
-	private WeakHashMap<Object, IRPCDataProviderHandler> providerHandlers = new WeakHashMap<>() ;
+	private WeakHashMap<Object, IRPCDataProviderHandler> providerHandlers = new WeakHashMap<Object, IRPCDataProviderHandler>() ;
 	
 	private IRPCDataProviderHandler getDataProviderHandler(String providerPath) {
 	

@@ -155,7 +155,7 @@ final public class IRPCDataProviderHandler {
 				}
 				catch (Exception e) {
 					e.printStackTrace();
-					map = new HashMap<>() ;
+					map = new HashMap<String, Object>() ;
 				}
 			}
 			
@@ -224,7 +224,12 @@ final public class IRPCDataProviderHandler {
 				e.printStackTrace();
 			}
 		}
-		catch (IllegalAccessException | IllegalArgumentException e) {
+		catch (IllegalAccessException e) {
+			response.ok = false ;
+			response.error = e ;
+			e.printStackTrace();
+		}
+		catch (IllegalArgumentException e) {
 			response.ok = false ;
 			response.error = e ;
 			e.printStackTrace();

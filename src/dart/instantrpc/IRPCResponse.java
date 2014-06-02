@@ -5,7 +5,7 @@ import java.lang.ref.WeakReference;
 
 public class IRPCResponse {
 
-	static ThreadLocal<WeakReference<IRPCResponse>> localResponse = new ThreadLocal<>() ;
+	static ThreadLocal<WeakReference<IRPCResponse>> localResponse = new ThreadLocal<WeakReference<IRPCResponse>>() ;
 	
 	static protected void setLocalResponse(IRPCResponse response) {
 		localResponse.set( new WeakReference<IRPCResponse>(response) );
