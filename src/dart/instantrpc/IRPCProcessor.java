@@ -88,6 +88,12 @@ final public class IRPCProcessor {
 		
 		IRPCResponse response = new IRPCResponse(eventTable) ;
 		
+		String returnRawData = queryParameters != null ? queryParameters.get("IRPC_RETURN_RAWDATA") : null ;
+		
+		if (returnRawData != null && !returnRawData.isEmpty() && !returnRawData.equals("0") && !returnRawData.equals("false")) {
+			response.setReturnRawData(true);
+		}
+		
 		IRPCRequest request = new IRPCRequest(path, queryParameters) ;
 		
 		if ( request.eventUpdateRequest ) {

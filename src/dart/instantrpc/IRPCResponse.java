@@ -35,8 +35,18 @@ public class IRPCResponse {
 	
 	private IRPCEventTable eventTable ;
 	
+	private boolean returnRawData ;
+	
 	public IRPCResponse( IRPCEventTable eventTable ) {
 		this.eventTable = eventTable ;
+	}
+	
+	public void setReturnRawData(boolean returnRawData) {
+		this.returnRawData = returnRawData;
+	}
+	
+	public boolean isReturnRawData() {
+		return returnRawData;
 	}
 	
 	public IRPCEventTable getEventTable() {
@@ -136,6 +146,10 @@ public class IRPCResponse {
 	
 	public String buildIRPCResponse() {
 		if (fullIRPCResponse != null) return fullIRPCResponse ;
+		
+		if (returnRawData) {
+			return invokeReturn.toString() ;
+		}
 		
 		StringBuilder str = new StringBuilder() ;
 	
